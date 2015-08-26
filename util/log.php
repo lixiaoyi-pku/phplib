@@ -1,5 +1,7 @@
 <?php
 
+namespace Util\Log;
+
 class Config{
    public static function getConfig (){
       return array(
@@ -88,7 +90,12 @@ class Log{
          }
          return $ret;
     }
+
+	public static function info(){
+		echo "log file path: /log/test.txt";
+	}
 }
-$logIns = LOG::getInstance();
-$logIns->logMessage("test",LOG::INFO,'myTest');
+//$logIns = LOG::getInstance();
+//$logIns->logMessage("test",LOG::INFO,'myTest');
+Log::info();
 ?>
