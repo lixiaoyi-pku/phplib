@@ -3,13 +3,13 @@
 class Config{
    public static function getConfig (){
       return array(
-           'LOG_FILE'=> dirname(__DIR__) .'/log/test.txt', 
+           'LOG_FILE'=> dirname(__DIR__) .'/log/test.txt',
            'LOG_LEVEL'=>75  //INFO
       );
    }
 }
 class Log{
-  
+
     private $LogFile;
     private $logLevel;
 
@@ -19,10 +19,10 @@ class Log{
     const WARNING =25;
     const ERROR   = 10;
     const CRITICAL = 5;
-    
+
     private function __construct(){
-       
-        $cfg = Config::getConfig();    
+
+        $cfg = Config::getConfig();
         $this->logLevel = isset($cfg['LOG_LEVEL']) ? $cfg['LOG_LEVEL']:LOG::INFO;
         if(!isset($cfg['LOG_FILE']) && strlen($cfg['LOG_FILE'])){
             throw new Exception('can\'t set file to empty');
@@ -31,11 +31,11 @@ class Log{
         if(!is_resource($this->LogFile)){
             throw new Exception('invalid file Stream');
         }
-        
+
     }
 
     public static function getInstance(){
-       
+
         static $obj;
         if(!isset($obj)){
             $obj = new Log();
@@ -44,7 +44,7 @@ class Log{
     }
 
     public function LogMessage($msg, $logLevel = Log::INFO,$module = null){
-        
+
         if($logLevel > $this->logLevel){
             return ;
         }
@@ -54,9 +54,9 @@ class Log{
         $time = strftime('%x  %X',time());
         $msg = str_replace("\t",'',$msg);
         $msg = str_replace("\n",'',$msg);
-        
+
         $strLogLevel = $this->levelToString($logLevel);
-        
+
         if(isset($module)){
             $module = str_replace(array("\n","\t"),array("",""),$module);
         }
@@ -90,6 +90,5 @@ class Log{
     }
 }
 $logIns = LOG::getInstance();
-//print_r($logIns);
 $logIns->logMessage("test",LOG::INFO,'myTest');
 ?>
