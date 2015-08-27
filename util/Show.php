@@ -1,6 +1,6 @@
 <?php
 
-namespace Util\Show;
+namespace Show;
 
 class Show{
 
