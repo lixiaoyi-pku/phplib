@@ -1,7 +1,8 @@
 <?php
 
 require 'vendor/autoload.php';
+//require 'util/Show.php';
 
-$myLog = new Log();
-
-echo Log::info();
+use Util\Show as US;
+//echo Log::info();
+echo US\Show::msg();

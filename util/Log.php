@@ -1,6 +1,6 @@
 <?php
 
-namespace Util\Log;
+//namespace Util\Log;
 
 class Config{
    public static function getConfig (){
